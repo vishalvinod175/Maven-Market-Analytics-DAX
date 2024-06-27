@@ -77,3 +77,10 @@
 47. 'Last Month Profit' = `CALCULATE([Total Profit], DATEADD('Calendar'[date], -1, MONTH))`
 48. 'Last Month Returns' = `CALCULATE([Total Returns], DATEADD('Calendar'[date], -1, MONTH))`
 49. 'Revenue Target' = `[Last Month Revenue] * 1.05` based on 5% increase over 'Last Month Revenue'  **Format to $*
+50. You can design the report in your own ways through the Measures above. Thank you.
+51. Final Result -
+
+
+
+    ![2024-06-27](https://github.com/vishalvinod175/Maven-Market-Analytics-DAX/assets/164670302/2aacedb9-01ed-477e-9f9d-e176b0799036)
+
