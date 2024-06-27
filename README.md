@@ -40,3 +40,40 @@
 
 
 
+22. In the 'Calendar' table, add a column named 'Weekend' where 'Y' equal Saturday/Sunday or 'N'.   
+    `IF ('Calendar'[Day Name] = "Saturday" || 'Calendar'[Day Name] = "Sunday", "Y", "N")`
+23. In the 'Calendar' table, add a column named 'End of Month' returning the last date of the month.   
+     `EOMONTH('Calendar'[date],0)`
+24. In the 'Customers' table, add a column named 'Current Age' calculating the age using the birthdate.   
+    `DATEDIFF(Customers[birthdate].[Date], TODAY(),YEAR)`
+25. In the 'Customers' table, add a column named 'Priority' which equals high for customers owning homes and gold membership cards.
+    `IF(Customers[homeowner] = "Y" && Customers[member_card] = "Golden","High","Low")`
+26. In the 'Customers' table, add a column named 'Short_Country' returning the first 3 letters of the country name, all capitallized.
+    `UPPER(LEFT(Customers[customer_country],3))`
+27. In the 'Customers' table, add a column named 'House Number' extracting characters before the first space in the 'customer_address' column.   
+    `LEFT(Customers[customer_address], SEARCH(" ",Customers[customer_address])-1)`
+28. In the 'Products' table, add a column named 'price_tier' equals 'high' if 'retail_price'>$3, 'mid' if >$1 and 'low' otherwise.
+    `IF(Products[product_retail_price]>3,"High",IF(Products[product_retail_price]>1,"Mid","Low"))`
+29.  In the 'Stores' table, add a column named 'Years_Since_Remodel' giving the years between today and the last year of remodelling.
+    `DATEDIFF(Stores[last_remodel_date],TODAY(),YEAR)`   
+    **Add a new measures, accordingly to whichever table**
+30. 'Quantity Sold' = `SUM(Transaction_data[quantity])`
+31. 'Quantity Returned' = `SUM(Return_data[quantity])`
+32. 'Total Transactions' = `COUNTROWS(Transaction_data)`
+33. 'Total Returns' = `COUNTROWS(Return_data)`
+34. 'Return Rate' = `DIVIDE([Quantity Returned],[Quantity Sold])` **Format to Percentage*
+35. 'Weekend Transactions' = `CALCULATE([Total Transactions], 'Calendar'[Weekend]="Y")`
+36. 'All Transactions' = `CALCULATE([Total Transactions],ALL(Transaction_data))`
+37. 'All Returns' = `CALCULATE([Total Returns], ALL(Return_Data))`
+38. 'Total Revenue' = `SUMX(Transaction_Data, Transaction_Data[quantity] * related(Products[product_retail_price]))`
+39. 'Total Cost' = `SUMX(Transaction_data, Transaction_data[quantity] * RELATED(Products[product_cost]))`
+40. 'Total Profit' = `[Total Revenue] - [Total Cost]`
+41. 'Profit Margin' = `DIVIDE([Total Profit],[Total Revenue])`  **Format to Percentage*
+42. 'Unique Products' = `DISTINCTCOUNT(Products[product_name])`
+43. 'YTD Revenue' = `CALCULATE([Total Revenue],DATESYTD('Calendar'[date]))`
+44. '60-Day Revenue' = `CALCULATE([Total Revenue], DATESINPERIOD('Calendar'[date], MAX('Calendar'[date]),-60,DAY))`
+45. 'Last Month Transactions' = `CALCULATE([Total Transactions], DATEADD('Calendar'[date], -1, MONTH))`
+46. 'Last Month Revenue' = `CALCULATE([Total Revenue], dateadd('Calendar'[date], -1 , MONTH))`
+47. 'Last Month Profit' = `CALCULATE([Total Profit], DATEADD('Calendar'[date], -1, MONTH))`
+48. 'Last Month Returns' = `CALCULATE([Total Returns], DATEADD('Calendar'[date], -1, MONTH))`
+49. 'Revenue Target' = `[Last Month Revenue] * 1.05` based on 5% increase over 'Last Month Revenue'  **Format to $*
