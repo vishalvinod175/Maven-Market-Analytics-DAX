@@ -1,4 +1,11 @@
-# Maven-Market-Analytics
+# Maven-Market-Analytics 
+
+
+
+![2024-06-27](https://github.com/vishalvinod175/Maven-Market-Analytics-DAX/assets/164670302/3cff44ee-17d5-4607-9229-aa1698b8c0ce)   
+
+
+
 
 1. Load all the Data. Open the PowerQuery Editor to change the name of the tables and columns, according to your ease. Make sure the data is accurate with the correct Datatypes.
 2. Add a new folder on your desktop (or in your documents) named "MavenMarket Transactions", containing both the MavenMarket_Transactions_1997 and MavenMarket_Transactions_1998 csv files.
@@ -78,9 +85,9 @@
 48. 'Last Month Returns' = `CALCULATE([Total Returns], DATEADD('Calendar'[date], -1, MONTH))`
 49. 'Revenue Target' = `[Last Month Revenue] * 1.05` based on 5% increase over 'Last Month Revenue'  **Format to $*
 50. You can design the report in your own ways through the Measures above. Thank you.
-51. Final Result -
 
 
 
-    ![2024-06-27](https://github.com/vishalvinod175/Maven-Market-Analytics-DAX/assets/164670302/2aacedb9-01ed-477e-9f9d-e176b0799036)
+
+
 
